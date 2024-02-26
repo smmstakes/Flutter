@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:app_test/widgets/gradient_container.dart';
 
 void main() {
   runApp(
-    MaterialApp(
+    const MaterialApp(
       home: Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(colors: ),
-          ),
-          child: const Center(
-            child: Text("Wello Horld!"),
-          ),
-        ),
+        body: GradientContainer(),
       ),
       debugShowCheckedModeBanner: false,
     ),
