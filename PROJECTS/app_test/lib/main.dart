@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MaterialApp(home: Text("Wello Horld!"),));  // Create a widget on the screen
+  runApp(
+    MaterialApp(
+      home: Scaffold(
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(colors: ),
+          ),
+          child: const Center(
+            child: Text("Wello Horld!"),
+          ),
+        ),
+      ),
+      debugShowCheckedModeBanner: false,
+    ),
+  ); // Create a widget on the screen
 }
-
-
