@@ -3,7 +3,7 @@ import 'package:roll_dice_app/widgets/gradient_container.dart';
 
 void main() {
   runApp(
-    MaterialApp(
+    const MaterialApp(
       home: Scaffold(
         body: GradientContainer([
           Color.fromARGB(255, 224, 79, 22),
@@ -14,4 +14,3 @@ void main() {
     ),
   ); // Create a widget on the screen
 }
-''
