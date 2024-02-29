@@ -11,7 +11,7 @@ class DiceRoller extends StatefulWidget {
 class _DiceRollerState extends State<DiceRoller> with TickerProviderStateMixin {
   // Add '_' and "State" for organization
 
-  int hatTrickCount = 0;
+  int hatTrickCount = 1;
   int? previousDice = 1, diceRoll = 1;
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -36,7 +36,7 @@ class _DiceRollerState extends State<DiceRoller> with TickerProviderStateMixin {
         title: const Text("Congratulations, you got a Hat-Trick!!!"),
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(context).pop(), // Use arrow syntax
+            onPressed: () => Navigator.of(context).pop(),
             child: const Text("Thanks!"),
           ),
         ],
@@ -49,12 +49,12 @@ class _DiceRollerState extends State<DiceRoller> with TickerProviderStateMixin {
 
     if (diceRoll == previousDice) {
       hatTrickCount++;
-      if (hatTrickCount == 2) {
+      if (hatTrickCount == 3) {
         hatTrickAlert();
-        hatTrickCount = 0;
+        hatTrickCount = 1;
       }
     } else {
-      hatTrickCount = 0;
+      hatTrickCount = 1;
     }
 
     previousDice = diceRoll;
