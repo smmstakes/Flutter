@@ -89,12 +89,42 @@ If your `class` is a `widget`, you can use `extends` to create a class with some
 - Useful for elements that don't change over time, like texts, icons, images, etc.
 - More *simple* and *eficient*.
 
+```dart
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text('Hello World'),
+    );
+  }
+}
+```
 
 ### `StatefulWidget`
 
 - **Dynamic** and **Mutable** Widgets
 - Useful for elements that change over time, like buttons, forms, etc.
 - Can interact with the user and change the state of the widget.
+
+```dart	
+
+class MyWidget extends StatefulWidget {
+  const MyWidget({super.key});
+
+  @override
+  State<MyWidget> createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text('Hello World'),
+    );
+  }
+}
+```
+
 
 ---
 
