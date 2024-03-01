@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:quizz_app/screens/quiz_screen.dart';
+// import 'package:quizz_app/screens/questions_screen.dart';
+// import 'package:quizz_app/screens/questions_screen.dart';
 
-class InitialScreen extends StatefulWidget {
-  const InitialScreen({super.key}); // Constructor Function
+class InitialScreen extends StatelessWidget {
+  const InitialScreen(this.startQuiz, {super.key}); // Constructor Function
 
-  @override
-  State<InitialScreen> createState() => _InitialScreenState();
-}
-
-class _InitialScreenState extends State<InitialScreen> {
-  void startQuiz() {
-    const QuizScreen();
-  }
+  final void Function() startQuiz;
 
   @override
   Widget build(BuildContext context) {
