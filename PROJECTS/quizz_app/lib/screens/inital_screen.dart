@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 // import 'package:quizz_app/screens/questions_screen.dart';
 // import 'package:quizz_app/screens/questions_screen.dart';
 
@@ -14,17 +15,18 @@ class InitialScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Image.asset(
-            "images/quiz-logo.png",
-            height: 200,
+            "/images/quiz-logo.png",
+            height: 170,
           ),
           const SizedBox(
             height: 15,
           ),
-          const Text(
+          Text(
             "Learn Flutter the fun way!",
-            style: TextStyle(
+            style: GoogleFonts.lato(
               color: Colors.white,
-              fontSize: 22,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(
@@ -37,7 +39,7 @@ class InitialScreen extends StatelessWidget {
               "Start Quiz",
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 22,
+                fontSize: 16,
               ),
             ),
           ),
