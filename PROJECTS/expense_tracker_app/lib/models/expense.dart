@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
+import 'package:intl/intl.dart';
 
-var formatted = DateFormat("dd/MM/yyyy HH:mm");
+var formatted = DateFormat("dd/MM/yyyy");
 
 const uuid = Uuid();
 

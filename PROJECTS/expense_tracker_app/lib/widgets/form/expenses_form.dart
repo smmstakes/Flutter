@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
+import 'package:intl/intl.dart';
+
+import 'package:expense_tracker_app/models/expense.dart';
+
+var formatted = DateFormat("dd/MM/yyyy");
+
 class ExpenseForms extends StatefulWidget {
-  const ExpenseForms({super.key});
+  const ExpenseForms({super.key, required this.addExpense});
+
+  final Function addExpense;
 
   @override
   State<ExpenseForms> createState() => _ExpenseFormsState();
@@ -10,17 +18,60 @@ class ExpenseForms extends StatefulWidget {
 class _ExpenseFormsState extends State<ExpenseForms> {
   final _tittleController = TextEditingController();
   final _amountController = TextEditingController();
+  Category _selectedCategory = Category.food;
+  DateTime? _selectedDate;
 
-  void _datePicker() {
+  void _datePicker() async {
     final now = DateTime.now();
     final firstDate = DateTime(now.year - 5, now.month, now.day);
     final lastDate = DateTime(now.year + 5, now.month, now.day);
 
-    showDatePicker(
+    final pickedDate = await showDatePicker(
         context: context,
         initialDate: now,
         firstDate: firstDate,
         lastDate: lastDate);
+
+    setState(() {
+      _selectedDate = pickedDate;
+    });
+  }
+
+  void _submitExpenseData() {
+    final tittleIsInvalid = _tittleController.text.trim().isEmpty;
+    final enteredAmount = double.tryParse(_amountController.text);
+    final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
+    final dateIsInvalid = _selectedDate == null;
+
+    if (tittleIsInvalid || amountIsInvalid || dateIsInvalid) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text("Invalid input"),
+          content: const Text(
+              "Please make sure a valid tittle, amount, date and category was entered."),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: const Text("Okay"),
+            )
+          ],
+        ),
+      );
+      return;
+    }
+
+    widget.addExpense(
+      Expense(
+          title: _tittleController.text,
+          amount: enteredAmount,
+          date: _selectedDate!,
+          category: _selectedCategory),
+    );
+
+    Navigator.pop(context);
   }
 
   @override
@@ -56,7 +107,7 @@ class _ExpenseFormsState extends State<ExpenseForms> {
                   controller: _amountController,
                   keyboardType: const TextInputType.numberWithOptions(),
                   decoration: const InputDecoration(
-                    prefixText: "\$",
+                    prefixText: "\$ ",
                     label: Text(
                       "Amount",
                       style:
@@ -73,7 +124,9 @@ class _ExpenseFormsState extends State<ExpenseForms> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    const Text("Selected Date"),
+                    Text(_selectedDate == null
+                        ? "No selected date"
+                        : formatted.format(_selectedDate!)),
                     IconButton(
                       onPressed: _datePicker,
                       icon: const Icon(Icons.calendar_month_sharp),
@@ -86,6 +139,26 @@ class _ExpenseFormsState extends State<ExpenseForms> {
           const SizedBox(height: 20),
           Row(
             children: [
+              DropdownButton(
+                value: _selectedCategory,
+                items: Category.values
+                    .map(
+                      (category) => DropdownMenuItem(
+                        value: category,
+                        child: Text(
+                          category.name.toUpperCase(),
+                        ),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  if (value == null) return;
+                  setState(() {
+                    _selectedCategory = value;
+                  });
+                },
+              ),
+              const Spacer(),
               ElevatedButton.icon(
                 onPressed: () {
                   Navigator.pop(context);
@@ -95,9 +168,7 @@ class _ExpenseFormsState extends State<ExpenseForms> {
               ),
               const SizedBox(width: 10),
               ElevatedButton.icon(
-                onPressed: () {
-                  // print("${_amountController.text} ${_tittleController.text}");
-                },
+                onPressed: _submitExpenseData,
                 icon: const Icon(Icons.check_circle_sharp),
                 label: const Text("Save Expense"),
               ),
