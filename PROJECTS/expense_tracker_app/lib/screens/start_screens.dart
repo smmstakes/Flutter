@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/widgets/form/expenses_form.dart';
 import 'package:flutter/material.dart';
 
 import 'package:expense_tracker_app/models/expense.dart';
@@ -29,9 +30,23 @@ class _StartScreenState extends State<StartScreen> {
         category: Category.travel),
   ];
 
+  void _openAddExpense() {
+    showModalBottomSheet(
+        context: context, builder: (ctx) => const ExpenseForms());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Flutter Expense Tracker"),
+        actions: [
+          IconButton(
+            onPressed: _openAddExpense,
+            icon: const Icon(Icons.add_circle_outline_outlined),
+          ),
+        ],
+      ),
       body: Column(
         children: [
           const Text("The chart"),
