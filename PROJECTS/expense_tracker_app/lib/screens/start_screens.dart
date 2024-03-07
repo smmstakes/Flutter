@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/widgets/chart/chart.dart';
 import 'package:expense_tracker_app/widgets/form/expenses_form.dart';
 import 'package:flutter/material.dart';
 
@@ -91,7 +92,7 @@ class _StartScreenState extends State<StartScreen> {
       ),
       body: Column(
         children: [
-          const Text("The chart"),
+          Chart(expenses: _registeredExpenses),
           Expanded(child: mainContent),
         ],
       ),
