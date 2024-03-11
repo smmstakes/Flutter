@@ -39,6 +39,7 @@ class _StartScreenState extends State<StartScreen> {
 
   void _openAddExpense() {
     showModalBottomSheet(
+      useSafeArea: true,
         isScrollControlled: true,
         context: context,
         builder: (ctx) => ExpenseForms(addExpense: _addExpense));
@@ -69,6 +70,8 @@ class _StartScreenState extends State<StartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+
     Widget mainContent = const Center(
       child: Text("No expenses found!"),
     );
@@ -90,12 +93,19 @@ class _StartScreenState extends State<StartScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Chart(expenses: _registeredExpenses),
-          Expanded(child: mainContent),
-        ],
-      ),
+      body: width < 600
+          ? Column(
+              children: [
+                Chart(expenses: _registeredExpenses),
+                Expanded(child: mainContent),
+              ],
+            )
+          : Row(
+              children: [
+                Expanded(child: Chart(expenses: _registeredExpenses)),
+                Expanded(child: mainContent),
+              ],
+            ),
     );
   }
 }
