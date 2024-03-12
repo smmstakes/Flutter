@@ -9,3 +9,4 @@ Here tou can find the structure of the projects and the documentation of each to
 3. [Expense Tracker App](PROJECTS\expense_tracker_app\README.md)
    1. [Flutter Themes, Forms and Adaptative UI](03-expense_tracker_app/flutter_widgets.md)
 4. [TODO App](PROJECTS\todo_app\README.md)
+   1. [Flutter Behind The Scenes](04-todo_app/flutter_internals.md)
