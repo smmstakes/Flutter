@@ -4,4 +4,5 @@ This repository contains a list of projects that I have worked on. Each project 
 
 1. [ROLL DICE APP](PROJECTS/roll_dice_app)
 2. [QUIZ APP](PROJECTS/quiz_app)
-3. [EXPENSE TRACKER APP]()
+3. [EXPENSE TRACKER APP](PROJECTS\expense_tracker_app)
+4. [TODO APP](PROJECTS\todo_app)
