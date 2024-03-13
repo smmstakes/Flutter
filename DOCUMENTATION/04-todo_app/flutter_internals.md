@@ -10,3 +10,5 @@ Flutter has three trees that are used to render the UI. These are:
   - Created behind the scenes
   - Used for determining necessary UI updates, elements are re-used if possible
 - **Render Tree**: *On-screen* representation of your widgets
+  - Updated when determined via element tree comparison
+  - Only re-rendered (partially) if UI updates are needed
