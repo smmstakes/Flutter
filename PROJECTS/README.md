@@ -6,3 +6,4 @@ This repository contains a list of projects that I have worked on. Each project 
 2. [QUIZ APP](PROJECTS/quiz_app)
 3. [EXPENSE TRACKER APP](PROJECTS\expense_tracker_app)
 4. [TODO APP](PROJECTS\todo_app)
+5. [MEALS APP](PROJECTS\meals_app)
