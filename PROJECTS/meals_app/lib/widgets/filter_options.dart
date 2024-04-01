@@ -21,26 +21,6 @@ class _FilterOptionsState extends State<FilterOptions> {
 
   bool get isOptionSelected => _optionFilterSet;
 
-//TODO
-  // bool? _filterOption(String option) {
-  //   switch (widget.option) {
-  //     case "Gluten-free":
-  //       return {Filter.glutenFree: isOptionSelected};
-
-  //     case "Lactose-free":
-  //       return;
-
-  //     case "Vegetarian":
-  //       return;
-
-  //     case "Vegan":
-  //       return;
-
-  //     default:
-  //       return false;
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return SwitchListTile(
